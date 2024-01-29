@@ -5,6 +5,7 @@ import MovieList from './components/MovieList';
 import Stars from './components/Stars';
 
 const App = () => {
+  // State for storing the list of movies
   const [movies, setMovies] = useState([
     {
       "Title": "Creature from the Black Lagoon",
@@ -40,7 +41,9 @@ const App = () => {
     },
   ]);
 
+  // Function to handle review submission
   const handleReviewSubmit = (movieId, reviewData) => {
+    // Update the state to include the new review for the specified movie
     setMovies(prevMovies => {
       const updatedMovies = [...prevMovies];
       const movieIndex = updatedMovies.findIndex(movie => movie.imdbID === movieId);
@@ -60,6 +63,7 @@ const App = () => {
   return (
     <div className='container-fluid movie-app'>
       <div className='col'>
+         {/* Pass the movies state and review submission function to MovieList */}
         <MovieList movies={movies} onReviewSubmit={handleReviewSubmit} />
       </div>
     </div>

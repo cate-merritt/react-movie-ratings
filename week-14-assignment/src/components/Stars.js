@@ -8,17 +8,21 @@ const colors = {
 };
 
 function Stars({ onReviewSubmit }) {
+     // State for managing user input and reviews
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [comment, setComment] = useState('');
   const [reviews, setReviews] = useState([]);
 
+  // Array to represent star icons
   const stars = Array(5).fill(0);
 
+   // Event handler for clicking on a star
   const handleClick = (value) => {
     setCurrentValue(value);
   };
-
+ 
+  // Event handlers for mouseover and mouseleave on stars
   const handleMouseOver = (newHoverValue) => {
     setHoverValue(newHoverValue);
   };
@@ -27,17 +31,23 @@ function Stars({ onReviewSubmit }) {
     setHoverValue(undefined);
   };
 
+  // Event handler for updating comment input
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
+  // Event handler for submitting a review
   const handleReviewSubmit = () => {
+    // Creating review data object
     const reviewData = {
       starRating: currentValue,
       comment: comment,
     };
+    // Updating reviews state with the new review
     setReviews([...reviews, reviewData]);
+    // Calling the provided onReviewSubmit function
     onReviewSubmit(reviews);
+    // Clearing state after submission
     setCurrentValue(0);
     setHoverValue(undefined);
     setComment('');
@@ -45,8 +55,10 @@ function Stars({ onReviewSubmit }) {
 
   return (
     <div style={styles.container}>
+        {/* Heading for the review section */}
       <h2> Share your thoughts... </h2>
 
+      {/* Star rating section */}
       <div style={styles.stars}>
         {stars.map((_, index) => (
           <FaStar
@@ -65,12 +77,16 @@ function Stars({ onReviewSubmit }) {
           />
         ))}
       </div>
+
+      {/* Comment input section */}
       <textarea
         placeholder="Type your review here!"
         value={comment}
         onChange={handleCommentChange}
         style={styles.textarea}
       />
+
+      {/* Submit button */}
       <button 
         style={styles.button}
         onClick={handleReviewSubmit}
@@ -83,6 +99,7 @@ function Stars({ onReviewSubmit }) {
         <div style={styles.reviewContainer}>
           {reviews.map((review, index) => (
             <div key={index} style={styles.review}>
+              {/* Displaying star icons based on the rating and comment */}
               <p>Rating: {Array(review.starRating).fill(<FaStar size={18} color={colors.orange} />)}</p>
               <p>Comment: {review.comment}</p>
             </div>

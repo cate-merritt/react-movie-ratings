@@ -1,25 +1,31 @@
+/* Global styling for the body */
 body {
   background: black;
   color: white;
 }
 
+/* Styling for the movie app container */
 .movie-app {
   padding: 20px; 
 }
 
+/* Styling for the column */
 .col {
   overflow-y: auto;
   flex-wrap: nowrap;
 }
 
+/* Styling for movie titles */
 .movie-title {
   padding: 20px;
 }
 
+/* Styling for h2 elements */
 h2 {
   padding: 10px;
 }
 
+/* Styling for h1 elements (movie list heading) */
 h1 {
   font-size: 70px;
   font-weight: 600;
@@ -29,6 +35,7 @@ h1 {
 
 } 
 
+/* Styling for movie list images */
 .movie-list img {
   display: block;
   margin-left: 5px;
